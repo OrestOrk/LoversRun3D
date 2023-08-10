@@ -8,6 +8,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Transform _boyTransform;
     [SerializeField] private Transform _girlTransform;
 
+    private Vector3 _startPosition;
+
     private float _speedMovement;
     private float _speedRotate;
 
@@ -16,9 +18,13 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         GlobalEventManager.OnLevelStartPlaying += StartMove;
+        GlobalEventManager.OnLevelFinish += LevelEnd;
+        GlobalEventManager.OnGameRefresh += RefreshTransform;
 
         _speedMovement = 10f;
         _speedRotate = 500f;
+
+        _startPosition = transform.position;
     }
 
     // Update is called once per frame
@@ -48,6 +54,18 @@ public class PlayerMovement : MonoBehaviour
 
         _playerAnimation.SetAnimationState(AnimationState.Run);
     }
+    private void LevelEnd(bool Win)
+    {
+        if (Win)
+        {
+            StopMove();
+            _playerAnimation.SetAnimationState(AnimationState.Dance);
+        }
+    }
+    private void StopMove()
+    {
+        moveFlag = false;
+    }
     private void Move()
     {
         transform.Translate(Vector3.forward * _speedMovement * Time.deltaTime, Space.World);
@@ -65,8 +83,16 @@ public class PlayerMovement : MonoBehaviour
         _boyTransform.transform.LookAt(_boyTransform.position + Vector3.forward);
         _girlTransform.transform.LookAt(_girlTransform.position + Vector3.forward);
     }
+    private void RefreshTransform()
+    {
+        transform.position = _startPosition;
+        transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+        _playerAnimation.SetAnimationState(AnimationState.Idle);
+    }
     private void OnDestroy()
     {
         GlobalEventManager.OnLevelStartPlaying -= StartMove;
+        GlobalEventManager.OnLevelFinish -= LevelEnd;
+        GlobalEventManager.OnGameRefresh -= RefreshTransform;
     }
 }

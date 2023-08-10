@@ -10,6 +10,5 @@ public class GameInstaller : MonoInstaller
     {
         Container.Bind<UIController>().FromInstance(_uiController).AsSingle().NonLazy();
         Container.Bind<PlayerMovement>().FromInstance(_playerMovement).AsSingle().NonLazy();
-        Debug.Log("Container Building Complette");
     }
 }

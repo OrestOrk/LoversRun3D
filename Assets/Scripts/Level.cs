@@ -14,14 +14,15 @@ public class Level : MonoBehaviour
     public void Construct (UIController _uIController)
     {
         uIController = _uIController;
-        Debug.Log("конструктор працює");
+        Debug.Log("ConstrucktLevel");
     }
-    void Start()
+    private void Start()
     {
         uIController.UpdateLevelText(_level);
+        Debug.Log("StartLevel");
     }
 
-    void Update()
+    private void Update()
     {
         if (!levelStartPlayingFlag)
         {

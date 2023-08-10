@@ -14,16 +14,16 @@ public class CameraMovement : MonoBehaviour
 
     private bool _win;
 
+
     private void Start()
     {
-        //GlobalEventManager.OnLevelComplette += Win;
+        GlobalEventManager.OnLevelFinish += LevelEnd;
     }
     private void LateUpdate()
     {
         if (_win)
         {
             RotateAroundPlayer();
-            Debug.Log("CameraError");
             return;
         }
         HandleTranslation();
@@ -31,7 +31,7 @@ public class CameraMovement : MonoBehaviour
     }
     private void OnDestroy()
     {
-        //GlobalEventManager.OnLevelComplette -= Win;
+        GlobalEventManager.OnLevelFinish -= LevelEnd;
     }
     private void HandleTranslation()
     {
@@ -53,9 +53,12 @@ public class CameraMovement : MonoBehaviour
         //transform.position = _cameraPosWin.position;
         transform.RotateAround(Player.position, -Player.up, _speedWinFly * Time.deltaTime);
     }
-    private void Win()
+    private void LevelEnd(bool Win) 
     {
-        _win = true;
-        transform.position = _cameraPosWin.position;
+        if (Win)
+        {
+            _win = true;
+            //transform.position = _cameraPosWin.position;
+        }
     }
 }
