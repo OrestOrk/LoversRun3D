@@ -126,7 +126,7 @@ public class ToonWater:MonoBehaviour{
     }
     
     public void OnTriggerEnter(Collider collision) {						//executes when a object hits the water
-    	ToonWaterFloatObject fo = null;
+    	/*ToonWaterFloatObject fo = null;//OREST
     	fo = collision.transform.GetComponent<ToonWaterFloatObject>();
     	if(fo ==null){
     		if(autoAddFloat){
@@ -137,7 +137,7 @@ public class ToonWater:MonoBehaviour{
     	}else  {	
     			initFloatObject(fo);
     			fo.enterWater();
-    	}
+    	}*/
     }
     
     public void initFloatObject(ToonWaterFloatObject fo){

@@ -14,10 +14,15 @@ public class UIController : MonoBehaviour
     [Header("Panels")]
     [SerializeField] private GameObject _confetyCamera;
 
-    [Header("Text")]
-    [SerializeField] private Text _levelTextValue;
+    [Header("Texts")]
+    [SerializeField] private Text _levelText;
+    [SerializeField] private Text _moneyText;
+
+    [Header("Animators")]
+    [SerializeField] private Animator _coinUiAnimator;
 
     private float _panelDelay;
+
     private void Start()
     {
         GlobalEventManager.OnLevelStartPlaying += HideStartPanel;
@@ -28,7 +33,12 @@ public class UIController : MonoBehaviour
     }
     public void UpdateLevelText(int Value)
     {
-        _levelTextValue.text = Value.ToString();
+        _levelText.text = Value.ToString();
+    }
+    public void UpdateMoneyText(int Value)
+    {
+        _moneyText.text = Value.ToString();
+        _coinUiAnimator.SetTrigger("Scale");
     }
     private void HideStartPanel()
     {
@@ -76,6 +86,7 @@ public class UIController : MonoBehaviour
     }
     private void RefreshPanels()
     {
+        _confetyCamera.SetActive(false);
         _startPanel.SetActive(true);
         _losePanel.SetActive(false);
         _winPanel.SetActive(false);

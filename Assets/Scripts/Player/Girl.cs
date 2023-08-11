@@ -12,4 +12,11 @@ public class Girl : MonoBehaviour
             Debug.Log("GirlColl");
         }
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Lava"))
+        {
+            GlobalEventManager.SendLevelFinsih(false);
+        }
+    }
 }

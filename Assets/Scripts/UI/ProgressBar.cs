@@ -32,6 +32,5 @@ public class ProgressBar : MonoBehaviour
     private void UpdateLevelProgress()
     {
         _progressImage.fillAmount = CalculateProgress();
-        Debug.Log("progres" + CalculateProgress());
     }
 }

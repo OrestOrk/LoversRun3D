@@ -23,14 +23,30 @@ public class ToonWaterFloatObject:MonoBehaviour{
     }
     
     public void calcWaterLevel(){
-    	_yPosBuffer = water.transform.position.y+(GetComponent<Collider>().bounds.size.y*.25f)+buoyancyCentreOffset.z+waterPosAdjust;
+        if(water != null)
+        {
+            _yPosBuffer = water.transform.position.y + (GetComponent<Collider>().bounds.size.y * .25f) + buoyancyCentreOffset.z + waterPosAdjust;
+        }
+        else
+        {
+            Debug.Log("Water null");
+        }
+    	
     }
     
     public void Ripple(){
     	if(inWater && rippleCounter < GetComponent<Rigidbody>().velocity.magnitude){
     		rippleCounter = .5f;
     		water.Ripple(transform);
-    	}
+            if (water != null)
+            {
+                water.Ripple(transform);
+            }
+            else
+            {
+                Debug.Log("Water null");
+            }
+        }
     }
     
     public void Update(){
