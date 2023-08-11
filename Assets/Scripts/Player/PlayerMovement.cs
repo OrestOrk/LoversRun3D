@@ -1,16 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Dreamteck.Splines;
 
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private PlayerAnimation _playerAnimation;
+
     [SerializeField] private Transform _boyTransform;
     [SerializeField] private Transform _girlTransform;
+    [SerializeField] private float _speedMovement;
+    [SerializeField] private float _speedFollower;
+
+    private SplineFollower _splineFollowerComponent;
+
+    private Transform _splineFolower;
 
     private Vector3 _startPosition;
 
-    private float _speedMovement;
     private float _speedRotate;
 
     private bool moveFlag;
@@ -22,7 +29,6 @@ public class PlayerMovement : MonoBehaviour
         GlobalEventManager.OnLevelFinish += LevelEnd;
         GlobalEventManager.OnGameRefresh += RefreshTransform;
 
-        _speedMovement = 10f;
         _speedRotate = 500f;
 
         _startPosition = transform.position;
@@ -31,7 +37,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         if (controlabeFlag)
         {
@@ -53,9 +59,16 @@ public class PlayerMovement : MonoBehaviour
             Move();
         }
     }
-
+    public void SetSpline(SplineFollower Follower)
+    {
+        _splineFolower = Follower.transform;
+        _splineFollowerComponent = Follower;
+        _splineFollowerComponent.followSpeed = _speedFollower;
+    }
     private void StartMove()
     {
+        _splineFollowerComponent.follow = true;
+
         moveFlag = true;
 
         _playerAnimation.SetAnimationState(AnimationState.Run);
@@ -77,11 +90,13 @@ public class PlayerMovement : MonoBehaviour
     }
     private void StopMove()
     {
+        _splineFollowerComponent.follow = false;
+
         moveFlag = false;
     }
     private void Move()
     {
-        transform.Translate(Vector3.forward * _speedMovement * Time.deltaTime, Space.World);
+        transform.position = Vector3.Lerp(transform.position, _splineFolower.position, _speedMovement * Time.deltaTime);
     }
     private void RotateLeft()
     {

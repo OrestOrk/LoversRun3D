@@ -15,7 +15,7 @@ public class Coin : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Boy") || other.gameObject.CompareTag("Boy"))
+        if (other.gameObject.CompareTag("Boy") || other.gameObject.CompareTag("Girl"))
         {
             gameObject.GetComponent<BoxCollider>().enabled = false;
 
