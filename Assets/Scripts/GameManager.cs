@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private Level[] Levels = new Level[0];
 
-    private GameObject _instiatedLevel;
+    private GameObject levelObject;
 
     private int _curentLevel;
     [Inject] private DiContainer diContainer;
@@ -28,20 +28,32 @@ public class GameManager : MonoBehaviour
     {
         Invoke(nameof(NextLevel), 1.5f);
     }
+    public void ReloadLevelButtonClick()
+    {
+        Invoke(nameof(ReloadLevel), 1.5f);
+    }
     private void CreateLevel()
     {
         //_instiatedLevel = Instantiate(Levels[_curentLevel - 1].gameObject, Vector3.zero, Quaternion.identity);
         Debug.Log(_curentLevel);
-        GameObject levelObject = diContainer.InstantiatePrefab(Levels[_curentLevel - 1].gameObject);
+        levelObject = diContainer.InstantiatePrefab(Levels[_curentLevel - 1].gameObject);
         Level level = levelObject.GetComponent<Level>();
     }
   
     private void NextLevel()
     {
-        Destroy(_instiatedLevel);
+        Destroy(levelObject);
 
         PlayerPrefs.SetInt("LevelComplette", _curentLevel);
         _curentLevel++;
+        CreateLevel();
+
+        GlobalEventManager.SendGameRefresh();
+    }
+    private void ReloadLevel()
+    {
+        Destroy(levelObject);
+
         CreateLevel();
 
         GlobalEventManager.SendGameRefresh();

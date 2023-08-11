@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     private float _speedRotate;
 
     private bool moveFlag;
+    private bool controlabeFlag;
 
     void Start()
     {
@@ -25,22 +26,27 @@ public class PlayerMovement : MonoBehaviour
         _speedRotate = 500f;
 
         _startPosition = transform.position;
+
+        controlabeFlag = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (SwipeController.swipeLeft)
+        if (controlabeFlag)
         {
-            RotateLeft();
+            if (SwipeController.swipeLeft)
+            {
+                RotateLeft();
 
-            RotateCharsForward();
-        }
-        else if (SwipeController.swipeRight)
-        {
-            RotateRight();
+                RotateCharsForward();
+            }
+            else if (SwipeController.swipeRight)
+            {
+                RotateRight();
 
-            RotateCharsForward();
+                RotateCharsForward();
+            }
         }
         if (moveFlag)
         {
@@ -56,10 +62,17 @@ public class PlayerMovement : MonoBehaviour
     }
     private void LevelEnd(bool Win)
     {
+        controlabeFlag = false;//Disable Player Controll
+
         if (Win)
         {
             StopMove();
             _playerAnimation.SetAnimationState(AnimationState.Dance);
+        }
+        else
+        {
+            StopMove();
+            _playerAnimation.SetAnimationState(AnimationState.Idle);
         }
     }
     private void StopMove()
@@ -85,7 +98,9 @@ public class PlayerMovement : MonoBehaviour
     }
     private void RefreshTransform()
     {
-        transform.position = _startPosition;
+        controlabeFlag = true;//Enabled Player Controll
+
+        transform.position = _startPosition;//Teleport To startPos
         transform.rotation = Quaternion.Euler(0f, 0f, 0f);
         _playerAnimation.SetAnimationState(AnimationState.Idle);
     }

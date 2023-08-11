@@ -6,20 +6,28 @@ using Zenject;
 public class Level : MonoBehaviour
 {
     [SerializeField] private int _level;
+    [SerializeField] private Transform _finishObject;
 
-    private UIController uIController;
+    private UIController _uIController;
+    private ProgressBar _progressBar;
+
     private bool levelStartPlayingFlag;
 
     [Inject]
-    public void Construct (UIController _uIController)
+    public void Construct (UIController uIController,ProgressBar progressBar)
     {
-        uIController = _uIController;
-        Debug.Log("ConstrucktLevel");
+        _uIController = uIController;
+        _progressBar = progressBar;
+
+        _progressBar.ReloadProgressBar(_finishObject.position);
+
+        Debug.Log("Zenjectwork");
+
     }
     private void Start()
     {
-        uIController.UpdateLevelText(_level);
-        Debug.Log("StartLevel");
+        Debug.Log("UIContr" + _uIController);
+        _uIController.UpdateLevelText(_level);
     }
 
     private void Update()

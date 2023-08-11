@@ -12,16 +12,22 @@ public class CameraMovement : MonoBehaviour
     [Range(0, 50f)]
     [SerializeField] private float _speedWinFly;
 
-    private bool _win;
+    private bool rotateFlag;
+    private Vector3 _startPosition;
+    private Quaternion _startRotation;
 
 
     private void Start()
     {
         GlobalEventManager.OnLevelFinish += LevelEnd;
+        GlobalEventManager.OnGameRefresh += StopRotate;
+
+        _startPosition = transform.position;
+        _startRotation = transform.rotation;
     }
     private void LateUpdate()
     {
-        if (_win)
+        if (rotateFlag)
         {
             RotateAroundPlayer();
             return;
@@ -32,6 +38,7 @@ public class CameraMovement : MonoBehaviour
     private void OnDestroy()
     {
         GlobalEventManager.OnLevelFinish -= LevelEnd;
+        GlobalEventManager.OnGameRefresh -= StopRotate;
     }
     private void HandleTranslation()
     {
@@ -57,8 +64,19 @@ public class CameraMovement : MonoBehaviour
     {
         if (Win)
         {
-            _win = true;
+            rotateFlag = true;
             //transform.position = _cameraPosWin.position;
         }
+    }
+    private void StopRotate()
+    {
+        rotateFlag = false;
+
+        RefreshTransform();
+    }
+    private void RefreshTransform()
+    {
+        transform.position = _startPosition;
+        transform.rotation = _startRotation;
     }
 }
