@@ -117,6 +117,11 @@ public class PlayerMovement : MonoBehaviour
 
         transform.position = _startPosition;//Teleport To startPos
         transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+
+
+        _boyTransform.transform.rotation = Quaternion.Euler(0f, 0f, 0f);//test
+        _girlTransform.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+
         _playerAnimation.SetAnimationState(AnimationState.Idle);
     }
     private void OnDestroy()
