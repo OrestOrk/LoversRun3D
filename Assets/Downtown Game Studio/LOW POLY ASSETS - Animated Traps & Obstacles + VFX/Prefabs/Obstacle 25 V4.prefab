@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 3732153092236527037}
   - component: {fileID: 1290804096826570123}
   - component: {fileID: 2183853004509568139}
+  - component: {fileID: 6026701934493948657}
   m_Layer: 0
   m_Name: O25 Part 1
-  m_TagString: Untagged
+  m_TagString: Obtacles
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -81,6 +82,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &6026701934493948657
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2866443769981568634}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.8836315, y: 0.7436397, z: 0.6250119}
+  m_Center: {x: 0, y: 0.017977342, z: 0.000000029802322}
 --- !u!1 &5910019434912871198
 GameObject:
   m_ObjectHideFlags: 0
@@ -116,7 +130,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &5910019434912871199
 Animator:
-  serializedVersion: 3
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -129,10 +143,12 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &6420804717025797291
 GameObject:
   m_ObjectHideFlags: 0

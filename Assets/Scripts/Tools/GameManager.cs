@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
-
+using Dreamteck.Splines;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private Level[] Levels = new Level[0];
+
+    public HandleAnalitycs _handleAnalitycs;
 
     private GameObject levelObject;
 
@@ -13,7 +15,6 @@ public class GameManager : MonoBehaviour
     [Inject] private DiContainer diContainer;
     private void Start()
     {
-        PlayerPrefs.DeleteAll();
         if (PlayerPrefs.HasKey("LevelComplette"))
         {
             _curentLevel = PlayerPrefs.GetInt("LevelComplette") + 1;
@@ -34,7 +35,10 @@ public class GameManager : MonoBehaviour
     }
     private void CreateLevel()
     {
-        //_instiatedLevel = Instantiate(Levels[_curentLevel - 1].gameObject, Vector3.zero, Quaternion.identity);
+        if(_curentLevel > Levels.Length)///POVTOR RIVNIV Cykle
+        {
+            _curentLevel = 1;
+        }
         Debug.Log(_curentLevel);
         levelObject = diContainer.InstantiatePrefab(Levels[_curentLevel - 1].gameObject);
         Level level = levelObject.GetComponent<Level>();
@@ -49,6 +53,8 @@ public class GameManager : MonoBehaviour
         CreateLevel();
 
         GlobalEventManager.SendGameRefresh();
+
+        _handleAnalitycs.NextLevel(); ///ANAlitik level+;
     }
     private void ReloadLevel()
     {

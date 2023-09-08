@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: faa11ec82e9746928e211e7f096812ca, type: 3}
+  m_Name: Settings
+  m_EditorClassIdentifier: 
+  gameAnalyticsIosGameKey: 
+  gameAnalyticsIosSecretKey: 
+  gameAnalyticsAndroidGameKey: 969e7176aa5f8746f5a56478fd9cda40
+  gameAnalyticsAndroidSecretKey: 92c38400afdaadd32d0e0e4a23915c8aaa60c234
+  facebookAppId: 1159733265429937
+  facebookClientToken: 20c3fc193c706115788867b7c71a8439
+  adjustIOSToken: 
+  adjustAndroidToken: rffgsjwfa0hs
+  EditorIdfa: 303ed5a2-2ad9-45f3-9e36-2ca0ff0f009e
+  UseRemoteConfig: 0
+  UseVoodooAnalytics: 1
+  companyName: ColorfulStudio
+  privacyPolicyURL: https://orkoorest25.wixsite.com/loverunnerprivacy
+  developerContactEmail: orkoorest25@gmail.com

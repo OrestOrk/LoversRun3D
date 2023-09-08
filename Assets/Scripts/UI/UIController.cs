@@ -61,6 +61,7 @@ public class UIController : MonoBehaviour
         {
             Invoke(nameof(ShowLosePanel), _panelDelay);
         }
+        //TinySauce.OnGameFinished(Win, MoneySystem.Get, "UserGameLevelNumber");
     }
     private void ShowWinPanel()
     {

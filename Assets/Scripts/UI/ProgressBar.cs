@@ -16,7 +16,7 @@ public class ProgressBar : MonoBehaviour
 
     private void Update()
     {
-        UpdateLevelProgress();
+        //UpdateLevelProgress();
     }
     public void ReloadProgressBar(Vector3 EndPosition)
     {
@@ -29,8 +29,9 @@ public class ProgressBar : MonoBehaviour
         float Progress = Mathf.InverseLerp(_startZPos, _finishPosition.z, PlayerZPos);
         return Progress;
     }
-    private void UpdateLevelProgress()
+     public void UpdateLevelProgress(float precent)
     {
-        _progressImage.fillAmount = CalculateProgress();
+        //_progressImage.fillAmount = CalculateProgress();
+        _progressImage.fillAmount = precent;
     }
 }

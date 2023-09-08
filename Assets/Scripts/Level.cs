@@ -34,7 +34,7 @@ public class Level : MonoBehaviour
         Debug.Log("UIContr" + _uIController);
         _uIController.UpdateLevelText(_level);
     }
-
+    
     private void Update()
     {
         if (!levelStartPlayingFlag)

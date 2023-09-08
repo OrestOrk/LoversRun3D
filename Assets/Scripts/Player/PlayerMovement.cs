@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Dreamteck.Splines;
+using Zenject;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Transform _girlTransform;
     [SerializeField] private float _speedMovement;
     [SerializeField] private float _speedFollower;
+
+    [Inject] private ProgressBar _progressBar;
 
     private SplineFollower _splineFollowerComponent;
 
@@ -39,6 +42,10 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        double Percent = _splineFollowerComponent.result.percent;//SET PROGRES 
+        _progressBar.UpdateLevelProgress((float)Percent);
+       
+
         if (controlabeFlag)
         {
             if (SwipeController.swipeLeft)

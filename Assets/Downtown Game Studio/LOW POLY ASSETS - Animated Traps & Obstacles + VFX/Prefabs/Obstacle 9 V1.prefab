@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 509112960657399641}
   - component: {fileID: 8215341389053633869}
   - component: {fileID: 3444925300942921549}
+  - component: {fileID: 7571725209261496745}
   m_Layer: 0
   m_Name: O9 Part 1
-  m_TagString: Untagged
+  m_TagString: Obtacles
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -81,6 +82,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &7571725209261496745
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 896607928343444907}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.4219514, y: 1.2295632, z: 0.6528747}
+  m_Center: {x: 0.63605756, y: -0.0008315742, z: 0.000019788742}
 --- !u!1 &5703244341827467590
 GameObject:
   m_ObjectHideFlags: 0
@@ -116,7 +130,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &5703244341827467589
 Animator:
-  serializedVersion: 3
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -127,12 +141,14 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 1c12d72c40f3d33439ad9fe9381e1633, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &7444440764784414949
 GameObject:
   m_ObjectHideFlags: 0
