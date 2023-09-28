@@ -10,6 +10,9 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private Transform _boyTransform;
     [SerializeField] private Transform _girlTransform;
+    [SerializeField] private Transform _boyTransformParent;
+    [SerializeField] private Transform _girlTransformParent;
+
     [SerializeField] private float _speedMovement;
     [SerializeField] private float _speedFollower;
 
@@ -32,7 +35,7 @@ public class PlayerMovement : MonoBehaviour
         GlobalEventManager.OnLevelFinish += LevelEnd;
         GlobalEventManager.OnGameRefresh += RefreshTransform;
 
-        _speedRotate = 500f;
+        _speedRotate = 400f;
 
         _startPosition = transform.position;
 
@@ -104,6 +107,7 @@ public class PlayerMovement : MonoBehaviour
     private void Move()
     {
         transform.position = Vector3.Lerp(transform.position, _splineFolower.position, _speedMovement * Time.deltaTime);
+
     }
     private void RotateLeft()
     {
@@ -115,8 +119,10 @@ public class PlayerMovement : MonoBehaviour
     }
     private void RotateCharsForward()
     {
-        _boyTransform.transform.LookAt(_boyTransform.position + Vector3.forward);
-        _girlTransform.transform.LookAt(_girlTransform.position + Vector3.forward);
+        //_boyTransform.transform.LookAt(_boyTransform.position + Vector3.forward)
+            _boyTransform.transform.LookAt(_boyTransform.position + _splineFolower.forward);
+       // _girlTransform.transform.LookAt(_girlTransform.position + Vector3.forward);
+        _girlTransform.transform.LookAt(_girlTransform.position + _splineFolower.forward);
     }
     private void RefreshTransform()
     {
@@ -128,6 +134,9 @@ public class PlayerMovement : MonoBehaviour
 
         _boyTransform.transform.rotation = Quaternion.Euler(0f, 0f, 0f);//test
         _girlTransform.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+
+        _boyTransformParent.transform.position = new Vector3(-2.5f, 0f, 0f);///SetStartPos girlAndBoy
+        _girlTransformParent.transform.position = new Vector3(2.5f, 0f, 0f);
 
         _playerAnimation.SetAnimationState(AnimationState.Idle);
     }

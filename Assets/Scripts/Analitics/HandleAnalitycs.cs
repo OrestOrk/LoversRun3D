@@ -26,11 +26,11 @@ public class HandleAnalitycs : MonoBehaviour
     }
     private void SendAnalitycsFinish(bool LevelResult)
    {
-        TinySauce.OnGameFinished(LevelResult,_moneySystem.GetMoney() , _virtualLevel.ToString());
+        //TinySauce.OnGameFinished(LevelResult,_moneySystem.GetMoney() , _virtualLevel.ToString());
    }
     public void SendLelelStartAnalitycs()
     {
-        TinySauce.OnGameStarted(_virtualLevel.ToString());
+       // TinySauce.OnGameStarted(_virtualLevel.ToString());
     }
     public void NextLevel()
     {

@@ -5,9 +5,10 @@ using UnityEngine;
 public class CameraMovement : MonoBehaviour
 {
     [SerializeField] private Vector3 Offset;
-    [SerializeField] private Transform TargetCameraPos;
     [SerializeField] private Transform _cameraPosWin;
-    [SerializeField] private Transform Player;
+    [SerializeField] private Transform _cameraLookPos;
+    [SerializeField] private Transform _cameraPositionHelper;
+    [SerializeField] private Transform Target;
     [SerializeField] private float _translateSpeed, _rotationSpeed;
     [Range(0, 50f)]
     [SerializeField] private float _speedWinFly;
@@ -33,32 +34,50 @@ public class CameraMovement : MonoBehaviour
             return;
         }
         HandleTranslation();
-        //LookToPlayer();
+        LookToPlayer();
     }
     private void OnDestroy()
     {
         GlobalEventManager.OnLevelFinish -= LevelEnd;
         GlobalEventManager.OnGameRefresh -= StopRotate;
     }
+    public void SetTarget(Transform target)//TESTTTTTTTTTTTTTTT{
+    {
+        Target = target;
+    }
     private void HandleTranslation()
     {
-        //var TargetPosition = TargetCameraPos.TransformPoint(Offset);
-        var TargetPosition = Player.transform.position;
-        transform.position = Vector3.Lerp(transform.position, TargetPosition + Offset , _translateSpeed * Time.deltaTime);
+        Vector3 lookDirection = -Target.forward;
+
+        // Оновлюємо позицію цього об'єкта відповідно до напрямку
+        Vector3 newPosition = Target.position + lookDirection * Offset.z; // Замість someDistance введіть потрібну вам відстань
+        newPosition.y = Offset.y;
+
+        // Застосовуємо інтерполяцію для зменшення різниці між поточною позицією і новою позицією
+        _cameraPositionHelper.transform.position = Vector3.Lerp(_cameraPositionHelper.transform.position, newPosition, _translateSpeed * Time.deltaTime);
+
+        //Vector3 Rotation;
+        //Rotation.y = Target.rotation.y;
+        //transform.rotation = Quaternion.Euler(transform.rotation.x, Rotation.y, transform.rotation.z);
+        transform.position = _cameraPositionHelper.position;
+        
+        //var TargetPosition = Player.transform.position;
+        //TargetPosition = Player.transform.forward * -2f;
+        //transform.position = Vector3.Lerp(transform.position, TargetPosition + Offset , _translateSpeed * Time.deltaTime);
     }
     private void LookToPlayer()
     {
         Quaternion OriginalRot = transform.rotation;
-        transform.LookAt(Player, Player.up);
+        transform.LookAt(_cameraLookPos,_cameraLookPos.up);
         Quaternion NewRot = transform.rotation;
         transform.rotation = OriginalRot;
         transform.rotation = Quaternion.Lerp(transform.rotation, NewRot, _rotationSpeed * Time.deltaTime);
     }
     private void RotateAroundPlayer()
     {
-        transform.LookAt(Player, Player.up);
+        transform.LookAt(Target, Target.up);
         //transform.position = _cameraPosWin.position;
-        transform.RotateAround(Player.position, -Player.up, _speedWinFly * Time.deltaTime);
+        transform.RotateAround(Target.position, -Target.up, _speedWinFly * Time.deltaTime);
     }
     private void LevelEnd(bool Win) 
     {

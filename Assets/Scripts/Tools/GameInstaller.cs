@@ -8,6 +8,7 @@ public class GameInstaller : MonoInstaller
     [SerializeField] private PlayerMovement _playerMovement;
     [SerializeField] private ProgressBar _progressBar;
     [SerializeField] private MoneySystem _moneySystem;
+    [SerializeField] private CameraMovement _cameraMovement;
 
     [SerializeField] private Transform _coinsFlyTransform;
     public override void InstallBindings()
@@ -17,5 +18,6 @@ public class GameInstaller : MonoInstaller
         Container.Bind<Transform>().FromInstance(_coinsFlyTransform).AsSingle().NonLazy();
         Container.Bind<ProgressBar>().FromInstance(_progressBar).AsSingle().NonLazy();
         Container.Bind<MoneySystem>().FromInstance(_moneySystem).AsSingle().NonLazy();
+        Container.Bind<CameraMovement>().FromInstance(_cameraMovement).AsSingle().NonLazy();
     }
 }

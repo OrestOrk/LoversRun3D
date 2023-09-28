@@ -13,18 +13,21 @@ public class Level : MonoBehaviour
     private UIController _uIController;
     private ProgressBar _progressBar;
     private PlayerMovement _playerMovement;
+    private CameraMovement _cameraMovement;
 
     private bool levelStartPlayingFlag;
 
     [Inject]
-    public void Construct (UIController uIController,ProgressBar progressBar,PlayerMovement playerMovement)
+    public void Construct (UIController uIController,ProgressBar progressBar,PlayerMovement playerMovement,CameraMovement cameraMovement)
     {
         _uIController = uIController;
         _progressBar = progressBar;
         _playerMovement = playerMovement;
+        _cameraMovement = cameraMovement;
 
         _progressBar.ReloadProgressBar(_finishObject.position);
         _playerMovement.SetSpline(_splineFollower.GetComponent<SplineFollower>());
+        _cameraMovement.SetTarget(_splineFollower);
 
         Debug.Log("Zenjectwork");
 

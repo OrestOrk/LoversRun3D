@@ -39,7 +39,10 @@ public class Coin : MonoBehaviour
             {
                 _moneySystem.AddMoney(1);
                 Debug.Log("CoinsAdInCoins");
+                GlobalEventManager.SendCoinPickUp();
+
                 Destroy(gameObject);
+                
                 yield break;
             }
             yield return null;
