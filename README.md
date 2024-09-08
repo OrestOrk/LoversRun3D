@@ -8,26 +8,22 @@ Control a couple in love in a magical 3D world and pass through obstacles
 Using this **API** key occurs in the following lines:
 
 
-Link to [**YouTube**](https://youtu.be/iJ9wqMWMbeo?si=ukxkrNO4d0YSkTnf).
+VIDEO gameplay Link to [**YouTube**](https://youtu.be/iJ9wqMWMbeo?si=ukxkrNO4d0YSkTnf).
 
 <b>UA:</b>
 
 Управляйте закоханою парою в чарівному 3Д світі , та проходіть через перешкоди
                              
 
-Посилання на  [**YouTube**](https://youtu.be/iJ9wqMWMbeo?si=ukxkrNO4d0YSkTnf).
+ВІДЕО Геймплейю посилання на  [**YouTube**](https://youtu.be/iJ9wqMWMbeo?si=ukxkrNO4d0YSkTnf).
 
 #
 ## Screenshots
 <p align="center">
-  <img src="screenshots/1.png" height="600px"/>
-  <img src="screenshots/2.png" height="600px"/>
-  <img src="screenshots/3.png" height="600px"/>
-  <img src="screenshots/4.png" height="600px"/>
-  <img src="screenshots/5.png" height="600px"/>
-  <img src="screenshots/6.png" height="600px"/>
-  <img src="screenshots/7.png" height="600px"/>
-  <img src="screenshots/8.png" height="600px"/>
+  <img src="Screenshots/Screenshot_268.png" height="500px"/>
+  <img src="Screenshots/Screenshot_270.png" height="500px"/>
+  <img src="Screenshots/Screenshot_271.png" height="500px"/>
+  <img src="Screenshots/Screenshot_273.png" height="600px"/>
 </p>
 
 #
@@ -61,5 +57,5 @@ Link to [**YouTube**](https://youtu.be/iJ9wqMWMbeo?si=ukxkrNO4d0YSkTnf).
 #
 ## License
 ```
-© 2021, CoolOtaku (ericspz531@gmail.com)
+© 2021, OrestOrk (orkoorest25@gmail.com)
 ```
